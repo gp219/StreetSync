@@ -1,0 +1,14 @@
+# Next.js (Frontend)
+street-sync-web-next/node_modules
+street-sync-web-next/.next
+street-sync-web-next/.env.local
+
+# Spring Boot (Backend)
+street-sync-backend-springboot/target
+street-sync-backend-springboot/.mvn
+street-sync-backend-springboot/*.jar
+
+# IDE & OS
+.idea/
+.vscode/
+.DS_Store

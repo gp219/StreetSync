@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>StreetSync - Real-Time Monitor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f4f4f9; }
+        #log { background: #222; color: #0f0; padding: 15px; height: 300px; overflow-y: scroll; border-radius: 5px; }
+        .alert-card { border-left: 5px solid #e74c3c; background: white; padding: 10px; margin: 10px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+<h2>🚦 StreetSync Real-Time Feed</h2>
+<p>Status: <span id="status">Disconnected</span></p>
+<div id="log">Waiting for validated alerts...</div>
+
+<script>
+    const statusEl = document.getElementById('status');
+    const logEl = document.getElementById('log');
+
+    // 1. Connect to the WebSocket endpoint we defined in WebSocketConfig
+    const socket = new SockJS('/ws-alerts');
+    const stompClient = Stomp.over(socket);
+
+    stompClient.connect({}, (frame) => {
+        statusEl.innerText = "Connected";
+        statusEl.style.color = "green";
+        console.log('Connected: ' + frame);
+
+        // 2. Subscribe to the topic our AlertProcessor sends to
+        stompClient.subscribe('/topic/nearby-alerts', (message) => {
+            const alert = JSON.parse(message.body);
+            showEvent(alert);
+        });
+    }, (error) => {
+        statusEl.innerText = "Error: " + error;
+        statusEl.style.color = "red";
+    });
+
+    function showEvent(alert) {
+        const entry = document.createElement('div');
+        entry.className = 'alert-card';
+        entry.innerHTML = `
+                <strong>⚠️ VALIDATED ALERT: ${alert.category}</strong><br>
+                Location: [${alert.location[0]}, ${alert.location[1]}]<br>
+                Verifications: ${alert.verificationCount}<br>
+                <small>Timestamp: ${new Date().toLocaleTimeString()}</small>
+            `;
+        logEl.prepend(entry);
+    }
+</script>
+</body>
+</html>
