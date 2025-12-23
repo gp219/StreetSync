@@ -10,5 +10,5 @@ FROM eclipse-temurin:21-jre-jammy
 WORKDIR /app
 # Spring Boot 4 builds the jar in the target folder
 COPY --from=build /app/target/*.jar app.jar
-EXPOSE 8080
+EXPOSE 10000
 ENTRYPOINT ["java", "-jar", "app.jar"]
