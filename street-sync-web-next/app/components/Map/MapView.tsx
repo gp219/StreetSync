@@ -153,7 +153,7 @@ export default function MapView() {
         </div>
       </div>
 
-      <MapContainer tap={false} center={userPos} zoom={13} className="h-full w-full">
+      <MapContainer center={userPos} zoom={13} className="h-full w-full">
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
         <MapEvents onMapClick={(lat, lng) => {
