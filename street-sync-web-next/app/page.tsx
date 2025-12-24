@@ -6,7 +6,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem('token'); // Or whatever key you use
+    const token = localStorage.getItem('token');
     if (token) {
       router.replace('/dashboard');
     } else {

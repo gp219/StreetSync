@@ -44,7 +44,6 @@ export default function SignupPage() {
                     <div className="bg-gray-800/50 p-8 rounded-2xl border border-gray-700 shadow-xl">
                         <h2 className="text-2xl font-bold mb-6 text-center">Join StreetSync</h2>
 
-                        {/* Your Existing Form Components Here */}
                         <form className="space-y-4" onSubmit={handleSignup}>
                             <input type="text" placeholder="Name" className="w-full bg-gray-900 border border-gray-700 p-3 rounded-lg" onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
                             <input type="email" placeholder="Email" className="w-full bg-gray-900 border border-gray-700 p-3 rounded-lg" onChange={(e) => setFormData({ ...formData, email: e.target.value })} />

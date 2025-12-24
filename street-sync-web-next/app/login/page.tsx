@@ -15,7 +15,7 @@ export default function LoginPage() {
         try {
             const res = await api.post('/api/auth/login', { email, password });
             localStorage.setItem('token', res.data.token);
-            router.push('/dashboard'); // Where your map will live
+            router.push('/dashboard');
         } catch (err) {
             alert("Invalid credentials" + err);
         }
@@ -45,7 +45,6 @@ export default function LoginPage() {
                     <div className="bg-gray-800/50 p-8 rounded-2xl border border-gray-700 shadow-xl">
                         <h2 className="text-2xl font-bold mb-6 text-center">Sign In</h2>
 
-                        {/* Your Existing Form Components Here */}
                         <form className="space-y-4" onSubmit={handleLogin}>
                             <input type="email" placeholder="Email" className="w-full bg-gray-900 border border-gray-700 p-3 rounded-lg" onChange={(e) => setEmail(e.target.value)} />
                             <input type="password" placeholder="Password" className="w-full bg-gray-900 border border-gray-700 p-3 rounded-lg" onChange={(e) => setPassword(e.target.value)} />

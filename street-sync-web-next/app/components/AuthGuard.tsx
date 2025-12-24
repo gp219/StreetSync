@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 export default function AuthGuard({ children }: { children: React.ReactNode }) {
     const router = useRouter();
 
-    // Directly derive the value from localStorage (synchronous)
     const hasToken = typeof window !== 'undefined' ? !!localStorage.getItem('token') : false;
 
     useEffect(() => {
@@ -15,7 +14,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
     }, [hasToken, router]);
 
     if (!hasToken) {
-        return null; // or a loading spinner
+        return null;
     }
 
     return <>{children}</>;

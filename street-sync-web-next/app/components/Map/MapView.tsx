@@ -133,6 +133,13 @@ export default function MapView() {
 
   return (
     <div className="h-full w-full relative">
+      <button
+          ref={reportBtnRef}
+          onClick={handleQuickReport}
+          className="absolute top-24 right-3 z-1000 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-2xl transition-all transform hover:scale-105"
+        >
+          + Report Hazard
+      </button>
 
       {/* 4. Live GPS Display Overlay */}
       <div className="absolute top-3 right-3 z-1000 bg-black/60 backdrop-blur-md text-white p-3 rounded-lg border border-white/20 pointer-events-none">
@@ -146,7 +153,7 @@ export default function MapView() {
         </div>
       </div>
 
-      <MapContainer center={userPos} zoom={13} className="h-full w-full">
+      <MapContainer tap={false} center={userPos} zoom={13} className="h-full w-full">
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
         <MapEvents onMapClick={(lat, lng) => {
@@ -183,14 +190,6 @@ export default function MapView() {
         {tempMarker && (
           <Marker position={[tempMarker.lat, tempMarker.lng]} icon={reportingIcon} />
         )}
-
-        <button
-          ref={reportBtnRef}
-          onClick={handleQuickReport}
-          className="absolute bottom-10 right-10 z-1000 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full shadow-2xl transition-all transform hover:scale-105"
-        >
-          + Report Hazard
-        </button>
       </MapContainer>
 
       {/* Reporting Modal */}

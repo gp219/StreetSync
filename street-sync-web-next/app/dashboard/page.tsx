@@ -15,15 +15,14 @@ export default function DashboardPage() {
     return (
         <AuthGuard>
             <div className="flex flex-col h-screen w-full overflow-hidden bg-gray-900">
-                <header className="h-16 w-full bg-gray-900/80 backdrop-blur-md border-b border-gray-800 flex items-center justify-between px-6 z-[2000]">
+                <header className="h-16 w-full bg-gray-900/80 backdrop-blur-md border-b border-gray-800 flex items-center justify-between px-6 z-2000">
                     <div className="flex items-center gap-3">
-                        {/* Logo Icon */}
                         <Image
-                            src="/streetsync.png"   // Just use the root slash
+                            src="/streetsync.png" 
                             alt="StreetSync Logo"
                             width={36}
                             height={36}
-                            className="object-contain" // Ensures the logo doesn't stretch
+                            className="object-contain"
                         />
                         <div>
                             <h1 className="text-xl font-black tracking-tight text-white">
@@ -36,7 +35,6 @@ export default function DashboardPage() {
                     </div>
 
                     <div className="flex items-center gap-4">
-                        {/* Status Badge */}
                         <div className="hidden md:flex items-center gap-2 bg-green-500/10 px-3 py-1.5 rounded-full border border-green-500/20">
                             <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
                             <span className="text-xs font-medium text-green-400">System Live</span>
@@ -57,9 +55,7 @@ export default function DashboardPage() {
                 {/* --- MAP AREA --- */}
                 <main className="flex-1 relative">
                     <MapComponent />
-
-                    {/* Subtle Overlay Shadow */}
-                    <div className="absolute top-0 left-0 w-full h-8 bg-gradient-to-b from-gray-900/40 to-transparent pointer-events-none z-[1000]"></div>
+                    <div className="absolute top-0 left-0 w-full h-8 bg-liner-to-b from-gray-900/40 to-transparent pointer-events-none z-1000"></div>
                 </main>
             </div>
         </AuthGuard>
